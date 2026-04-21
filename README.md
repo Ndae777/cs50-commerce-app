@@ -25,8 +25,6 @@ The platform allows users to create listings, place bids, manage watchlists, and
 - Database: SQLite
 🎯 What I Learned
 
-(This is VERY important — recruiters look at this)
-
 ## 🎯 What I Learned
 
 - Building full-stack applications using Django
