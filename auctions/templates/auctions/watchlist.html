@@ -1,0 +1,23 @@
+{% extends "auctions/layout.html" %}
+
+{% block title %}Watchlist Page {% endblock %}
+
+{% block body %}
+
+<h3>Watchlist</h3>
+
+
+{% for watchlist in user_watchlist %}
+<div class="watchlist_item">
+    <h3><a href="{% url 'listing_page' watchlist.item.id %}"> 
+    {{ watchlist.item.item_name.capitalize }}
+    </a></h3>
+
+    <img src="{{ watchlist.item.image_url }}" alt="{{ watchlist.item.item_name }}">
+    {% empty %}
+    <h3 style="color: darkkhaki;">No added items to watchlist.</h3>
+</div>
+{% endfor %}
+
+
+{% endblock %}

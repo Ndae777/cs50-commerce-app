@@ -1,0 +1,70 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+
+<div class="entire_body">
+    <div class="body_item_left">
+        <h3 class="body_title">{{ auction_listing.item_name.capitalize }}</h3>
+        <img class="listing_image" src="{{ auction_listing.image_url }}" alt="{{ auction_listing.item_name }}">
+        <div class="description" ><strong>Seller: </strong>{{ auction_listing.owner.username.capitalize }}</div>
+        <div class="description"><strong>Description </strong>: {{ auction_listing.description }}</div>
+        <div class="description"><strong>Starting Price</strong>: ${{ auction_listing.start_bid }}</div>
+        <div class="description"><strong>Current Price</strong>: ${{ current_price }}</div>
+        <div class="description"><strong>Category</strong>: {{ auction_listing.category }}</div>
+        {% if auction_listing.active == True %}
+        <div class="description"><strong>Availability</strong>: Currently Available </div>
+        {% else %}
+        <div class="description"><strong>Availability</strong>: Currently Unavailable </div>
+        {% endif %}
+        <br>
+
+        <form action="{% url 'listing_page' listing_id=listing_id %}" method="post">
+            {% csrf_token %}
+
+            {% if close_ownership %} 
+                <!-- owner will get only the option to control their bid realistically -->
+                <input type="submit" name="Close_bid" value="Close bid" class="btn btn-outline-danger"> 
+                <input type="submit" name="Open_bid" value="Open bid" class="btn btn-outline-success">
+            {% else %}
+                {% if auction_listing.active %}
+                    Enter bid($): <input type="number" name="bid"> 
+                    <input type="submit" name="Bid_submit" value="Submit bid" class="btn btn-primary">
+                {% else %}
+                    <h5 style="color: red;">The bid has been closed.</h5>
+                    {% if winner_present %}
+                    <h3 style="color: greenyellow;">But You are the winner!</h3>
+                    {% endif %}
+                {% endif %} 
+
+                {% if watchlist_present %}
+                    <input type="submit" name="watchlist_act" value="Remove from WatchList" class="btn btn-primary">
+                {% else %}
+                    <input type="submit" name="watchlist_act" value="Add to WatchList" class="btn btn-primary">
+                {% endif %}
+            {% endif %}
+
+        </form>
+
+        <h6 style="color: darkkhaki;">{{ success_message }}</h6>
+
+    </div>
+    <div class="body_comments_right">
+            <!-- dealing with comments -->
+        <form action="{% url 'listing_page' listing_id=listing_id %}" method="post">
+            {% csrf_token %}
+            <div class="form_comment">
+            Enter comment : {{ form.comment }}
+            <input type="submit" name="Comment_submit" value="Send" class="btn btn-primary comment_btn" >
+            </div>
+        </form>
+
+        {% for comments in all_comments %}
+        <br>
+        <div class="Comment">{{ comments.commentor }} : {{ comments.comment }}</div>
+        {% endfor %}
+
+    </div>
+</div>
+
+
+{% endblock %}

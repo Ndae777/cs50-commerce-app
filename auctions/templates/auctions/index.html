@@ -1,0 +1,20 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <h2 class="body title">Active Listings</h2>
+    <div class="listing_container">
+        {% for record in Auction_listings %}
+            <div class="listing">
+                <a  href="{% url 'listing_page' record.id %}">
+                    <h3 class="listing_name">{{ record.item_name.capitalize }}</h3>
+                    <img class="listing_image" src="{{ record.image_url }}" alt="{{ record.item_name }}">
+                    <div><strong>Seller: </strong>{{ record.owner.username.capitalize }}</div>  <!--to capitalize directly the name of the owner for display purposes -->
+                    <div><strong>Description </strong>: {{ record.description }}</div>
+                    <div><strong>Current Price</strong>: ${{ record.start_bid }}</div>
+                    <br>
+                </a>    
+            </div>           
+        {% endfor %}        
+    </div>
+
+{% endblock %}

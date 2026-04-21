@@ -1,0 +1,24 @@
+{% extends 'auctions/layout.html' %}
+
+{% block title %} Selcted Category {% endblock %}
+
+
+{% block body %}
+<h2 class="category_title">Active Listings in this category: </h2>
+<div class="category_page">
+    {% for listing in listings %}
+    <div class="category_page_item">
+    {% if listing.active %}
+    <a class="" href="{% url 'listing_page' listing.id %}"><h3>{{ listing.item_name.capitalize }}</h3></a>
+    <img src="{{listing.image_url}}" alt="{{listing.item_name}}">
+    <h4 style="color: greenyellow; padding-left: 100px;"> [Active] </h4>
+    {% else %}
+    <a class="" href="{% url 'listing_page' listing.id %}"><h3>{{ listing.item_name.capitalize }}</h3></a>
+    <img src="{{listing.image_url}}" alt="{{listing.item_name}}">
+    <h4 style="color: red; padding-left: 100px;"> [Closed] </h4>
+    {% endif %}
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
