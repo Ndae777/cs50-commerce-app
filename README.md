@@ -1,29 +1,7 @@
-🔥 1. GitHub “About” Section (Top Right)
-
-This is short — don’t overthink it.
-
-Description:
-
-Full-stack e-commerce web application built with Django, featuring user authentication, listings, bidding, and watchlists.
-
-Tags (Topics):
-
-django
-python
-javascript
-html
-css
-bootstrap
-sqlite
-web-development
-cs50
-🧠 2. README.md (Clean + Strong Version)
-
-You can copy this directly 👇
 
 📌 Title
 # CS50 Commerce – E-Commerce Web Application
-🧾 Overview
+
 ## 📖 Overview
 
 This project is a full-stack e-commerce web application developed as part of the CS50 Web Programming course.
