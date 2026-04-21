@@ -23,7 +23,6 @@ The platform allows users to create listings, place bids, manage watchlists, and
 - Backend: Python, Django
 - Frontend: HTML, CSS, JavaScript, Bootstrap
 - Database: SQLite
-🎯 What I Learned
 
 ## 🎯 What I Learned
 
